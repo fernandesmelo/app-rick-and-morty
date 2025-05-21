@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }) => {
 
   const searchMovies = async () => {
     try {
-      const response = await axios.get(`https://www.omdbapi.com/?apikey=1993e977&s=${query}`);
+      const response = await axios.get(`https://rickandmortyapi.com/api/episode/?name=${query}`);
       setMovies(response.data.Search || []);
     } catch (error) {
       console.error(error);
