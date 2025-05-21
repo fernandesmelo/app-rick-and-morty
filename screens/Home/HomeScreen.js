@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, TextInput, FlatList } from "react-native";
 import { Card, Text, Button } from "react-native-paper";
 import axios from "axios";
-import styles from "./HomeStyles"; 
+import styles from "./HomeStyles";
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
@@ -50,7 +50,11 @@ const HomeScreen = ({ navigation }) => {
         onChangeText={setQuery}
         style={styles.input}
       />
-      <Button mode="contained" onPress={searchRickAndMorty} style={styles.button}>
+      <Button
+        mode="contained"
+        onPress={searchRickAndMorty}
+        style={styles.button}
+      >
         Buscar
       </Button>
 
@@ -62,14 +66,14 @@ const HomeScreen = ({ navigation }) => {
             {item.characterImage && (
               <Card.Cover source={{ uri: item.characterImage }} />
             )}
-            <Card.Title title={item.name}/>
+            <Card.Title title={item.name} />
             <Card.Content>
               <Text>Data de exibição: {item.air_date}</Text>
               <Text>Episódio: {item.episode}</Text>
               <Button
                 mode="outlined"
                 onPress={() =>
-                  navigation.navigate("Detalhes", { episode: item })
+                  navigation.navigate("Details", { episode: item })
                 }
                 style={{ marginTop: 8 }}
               >
