@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, TextInput, FlatList, StyleSheet } from "react-native";
-import { Card, Paragraph, Text, Button } from "react-native-paper";
+import { Card, Text, Button } from "react-native-paper";
 import axios from "axios";
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [rickandmorty, setRickAndMorty] = useState([]);
 
-  const searchMovies = async () => {
+  const searchRickAndMorty = async () => {
     try {
       const url = query.trim()
         ? `https://rickandmortyapi.com/api/episode/?name=${query}`
@@ -34,10 +34,10 @@ const HomeScreen = ({ navigation }) => {
         })
       );
 
-      setMovies(episodesWithImage);
+      setRickAndMorty(episodesWithImage);
     } catch (error) {
       console.error(error);
-      setMovies([]);
+      setRickAndMorty([]);
     }
   };
 
@@ -49,12 +49,12 @@ const HomeScreen = ({ navigation }) => {
         onChangeText={setQuery}
         style={styles.input}
       />
-      <Button mode="contained" onPress={searchMovies} style={styles.button}>
+      <Button mode="contained" onPress={searchRickAndMorty} style={styles.button}>
         Buscar
       </Button>
 
       <FlatList
-        data={movies}
+        data={rickandmorty}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Card style={styles.card}>
