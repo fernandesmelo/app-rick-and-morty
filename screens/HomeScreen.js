@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
-import { View, TextInput, FlatList, StyleSheet } from 'react-native';
-import { Card, Title, Paragraph, Button } from 'react-native-paper';
-import axios from 'axios';
+import React, { useState } from "react";
+import { View, TextInput, FlatList, StyleSheet } from "react-native";
+import { Card, Title, Paragraph, Button } from "react-native-paper";
+import axios from "axios";
 
 const HomeScreen = ({ navigation }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
 
   const searchMovies = async () => {
     try {
-      const response = await axios.get(`https://rickandmortyapi.com/api/episode/?name=${query}`);
-      setMovies(response.data.Search || []);
+      const response = await axios.get(
+        `https://rickandmortyapi.com/api/episode/?name=${query}`
+      );
+      const episodes = response.data.results || [];
+
+      const episodesWithImage = await Promise.all(
+        episodes.map(async (ep) => {
+          if (ep.characters && ep.characters.length > 0) {
+            const randomIndex = Math.floor(
+              Math.random() * ep.characters.length
+            );
+            const randomCharacterUrl = ep.characters[randomIndex];
+            try {
+              const charRes = await axios.get(randomCharacterUrl);
+              return { ...ep, characterImage: charRes.data.image };
+            } catch {
+              return { ...ep, characterImage: null };
+            }
+          }
+          return { ...ep, characterImage: null };
+        })
+      );
+
+      setMovies(episodesWithImage);
     } catch (error) {
       console.error(error);
     }
@@ -19,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Digite o nome do filme..."
+        placeholder="Digite o nome de um episódio..."
         value={query}
         onChangeText={setQuery}
         style={styles.input}
@@ -30,19 +52,26 @@ const HomeScreen = ({ navigation }) => {
 
       <FlatList
         data={movies}
-        keyExtractor={(item) => item.imdbID}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Card style={styles.card}>
-            <Card.Cover source={{ uri: item.Poster }} />
+            {item.characterImage && (
+              <Card.Cover source={{ uri: item.characterImage }} />
+            )}
             <Card.Content>
-              <Title>{item.Title}</Title>
-              <Paragraph>{item.Year}</Paragraph>
-            </Card.Content>
-            <Card.Actions>
-              <Button onPress={() => navigation.navigate('Details', { imdbID: item.imdbID })}>
-                Ver Detalhes
+              <Title>{item.name}</Title>
+              <Paragraph>Data de exibição: {item.air_date}</Paragraph>
+              <Paragraph>Episódio: {item.episode}</Paragraph>
+              <Button
+                mode="outlined"
+                onPress={() =>
+                  navigation.navigate("Detalhes", { episode: item })
+                }
+                style={{ marginTop: 8 }}
+              >
+                Ver detalhes
               </Button>
-            </Card.Actions>
+            </Card.Content>
           </Card>
         )}
       />
@@ -57,7 +86,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     marginBottom: 10,
     padding: 10,
