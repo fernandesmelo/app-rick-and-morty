@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, TextInput, FlatList, StyleSheet } from "react-native";
+import { View, TextInput, FlatList } from "react-native";
 import { Card, Text, Button } from "react-native-paper";
 import axios from "axios";
+import styles from "./HomeStyles"; 
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
@@ -81,25 +82,5 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
-    padding: 10,
-  },
-  button: {
-    marginBottom: 10,
-  },
-  card: {
-    marginBottom: 10,
-  },
-});
 
 export default HomeScreen;
