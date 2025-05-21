@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, FlatList, StyleSheet } from "react-native";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
+import { Card, Paragraph, Text, Button } from "react-native-paper";
 import axios from "axios";
 
 const HomeScreen = ({ navigation }) => {
@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
       setMovies(episodesWithImage);
     } catch (error) {
       console.error(error);
-      setMovies([]); 
+      setMovies([]);
     }
   };
 
@@ -61,10 +61,10 @@ const HomeScreen = ({ navigation }) => {
             {item.characterImage && (
               <Card.Cover source={{ uri: item.characterImage }} />
             )}
+            <Card.Title title={item.name}/>
             <Card.Content>
-              <Title>{item.name}</Title>
-              <Paragraph>Data de exibição: {item.air_date}</Paragraph>
-              <Paragraph>Episódio: {item.episode}</Paragraph>
+              <Text>Data de exibição: {item.air_date}</Text>
+              <Text>Episódio: {item.episode}</Text>
               <Button
                 mode="outlined"
                 onPress={() =>
