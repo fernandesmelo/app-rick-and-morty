@@ -9,9 +9,11 @@ const HomeScreen = ({ navigation }) => {
 
   const searchMovies = async () => {
     try {
-      const response = await axios.get(
-        `https://rickandmortyapi.com/api/episode/?name=${query}`
-      );
+      const url = query.trim()
+        ? `https://rickandmortyapi.com/api/episode/?name=${query}`
+        : `https://rickandmortyapi.com/api/episode`;
+
+      const response = await axios.get(url);
       const episodes = response.data.results || [];
 
       const episodesWithImage = await Promise.all(
@@ -35,6 +37,7 @@ const HomeScreen = ({ navigation }) => {
       setMovies(episodesWithImage);
     } catch (error) {
       console.error(error);
+      setMovies([]); 
     }
   };
 
