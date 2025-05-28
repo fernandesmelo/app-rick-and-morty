@@ -18,4 +18,10 @@ export default StyleSheet.create({
   card: {
     marginBottom: 10,
   },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: 8,
+  },
 });

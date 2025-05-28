@@ -3,7 +3,7 @@ import { View, TextInput, FlatList } from "react-native";
 import { Card, Text, Button } from "react-native-paper";
 import axios from "axios";
 import styles from "./HomeStyles";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
@@ -43,13 +43,18 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  const addToFavorites = async () => {
+  const addToFavorites = async (episode) => {
     try {
-      const existingFavorites = await AsyncStorage.getItem('favorites') || '[]';
+      const existingFavorites =
+        (await AsyncStorage.getItem("favorites")) || "[]";
       const favorites = JSON.parse(existingFavorites);
-      favorites.push(movie);
-      await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
-      alert('Filme adicionado aos favoritos!');
+      if (!favorites.some((fav) => fav.id === episode.id)) {
+        favorites.push(episode);
+        await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+        alert("Episódio adicionado aos favoritos!");
+      } else {
+        alert("Episódio já está nos favoritos!");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -83,19 +88,25 @@ const HomeScreen = ({ navigation }) => {
             <Card.Content>
               <Text>Data de exibição: {item.air_date}</Text>
               <Text>Episódio: {item.episode}</Text>
-              <Button
-                mode="outlined"
-                onPress={() =>
-                  navigation.navigate("Details", { episode: item })
-                }
-                style={{ marginTop: 8 }}
-              >
-                Ver detalhes
-              </Button>
+              <View style={styles.buttonRow}>
+                <Button
+                  mode="outlined"
+                  onPress={() =>
+                    navigation.navigate("Details", { episode: item })
+                  }
+                  style={{ marginTop: 8, marginRight: 8 }}
+                >
+                  Ver detalhes
+                </Button>
+                <Button
+                  mode="outlined"
+                  onPress={() => addToFavorites(item)}
+                  style={{ marginTop: 8 }}
+                >
+                  Adicionar aos favoritos
+                </Button>
+              </View>
             </Card.Content>
-            <Card.Actions>
-              <Button onPress={addToFavorites}>Adicionar aos favoritos</Button>
-            </Card.Actions>
           </Card>
         )}
       />
