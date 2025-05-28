@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Card, Title, Paragraph, ActivityIndicator } from "react-native-paper";
+import { Card, Title, Paragraph, ActivityIndicator, Button } from "react-native-paper";
 import axios from "axios";
 
 const DetailsScreen = ({ route }) => {
@@ -11,7 +11,6 @@ const DetailsScreen = ({ route }) => {
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        // Busca todos os personagens do episódio em paralelo
         const responses = await Promise.all(
           episode.characters.map((url) => axios.get(url))
         );
@@ -24,6 +23,18 @@ const DetailsScreen = ({ route }) => {
     };
     fetchCharacters();
   }, [episode]);
+
+  const addToFavorites = async () => {
+    try {
+      const existingFavorites = await AsyncStorage.getItem('favorites') || '[]';
+      const favorites = JSON.parse(existingFavorites);
+      favorites.push(movie);
+      await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+      alert('Filme adicionado aos favoritos!');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (loading) {
     return <ActivityIndicator style={{ marginTop: 32 }} />;
@@ -43,6 +54,9 @@ const DetailsScreen = ({ route }) => {
             <Title>{character.name}</Title>
             <Paragraph>Espécie: {character.species}</Paragraph>
           </Card.Content>
+          <Card.Actions>
+            <Button onPress={addToFavorites}>Adicionar aos favoritos</Button>
+          </Card.Actions>
         </Card>
       ))}
     </ScrollView>
