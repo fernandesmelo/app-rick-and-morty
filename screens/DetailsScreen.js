@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Card, Title, Paragraph, ActivityIndicator, Button } from "react-native-paper";
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DetailsScreen = ({ route }) => {
   const { episode } = route.params;
