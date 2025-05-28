@@ -3,6 +3,7 @@ import { View, TextInput, FlatList } from "react-native";
 import { Card, Text, Button } from "react-native-paper";
 import axios from "axios";
 import styles from "./HomeStyles";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({ navigation }) => {
   const [query, setQuery] = useState("");
@@ -39,6 +40,18 @@ const HomeScreen = ({ navigation }) => {
     } catch (error) {
       console.error(error);
       setRickAndMorty([]);
+    }
+  };
+
+  const addToFavorites = async () => {
+    try {
+      const existingFavorites = await AsyncStorage.getItem('favorites') || '[]';
+      const favorites = JSON.parse(existingFavorites);
+      favorites.push(movie);
+      await AsyncStorage.setItem('favorites', JSON.stringify(favorites));
+      alert('Filme adicionado aos favoritos!');
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -80,6 +93,9 @@ const HomeScreen = ({ navigation }) => {
                 Ver detalhes
               </Button>
             </Card.Content>
+            <Card.Actions>
+              <Button onPress={addToFavorites}>Adicionar aos favoritos</Button>
+            </Card.Actions>
           </Card>
         )}
       />
