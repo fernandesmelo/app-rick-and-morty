@@ -2,7 +2,7 @@
 
 Este é um app React Native usando Expo para listar episódios e personagens do universo Rick and Morty.
 
-https://github.com/user-attachments/assets/12eacdbe-38ee-426c-97aa-6942f4e34d9d
+https://github.com/user-attachments/assets/d5c80b50-5f60-4bdc-990a-efbc15d9d032
 
 ## 🛠️ Construído com
 
