@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Card, Title, Paragraph, ActivityIndicator, Button } from "react-native-paper";
+import { ScrollView } from "react-native";
+import { Card, Title, Paragraph, ActivityIndicator } from "react-native-paper";
 import axios from "axios";
+import styles from "./DetailsStyles";
 
 const DetailsScreen = ({ route }) => {
   const { episode } = route.params;
@@ -47,23 +48,5 @@ const DetailsScreen = ({ route }) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: "#fff",
-  },
-  title: {
-    marginBottom: 8,
-    fontSize: 22,
-  },
-  subtitle: {
-    marginBottom: 4,
-  },
-  card: {
-    marginBottom: 16,
-  },
-});
 
 export default DetailsScreen;
