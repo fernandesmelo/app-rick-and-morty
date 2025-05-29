@@ -99,7 +99,7 @@ const HomeScreen = ({ navigation }) => {
                   Ver detalhes
                 </Button>
                 <Button
-                  mode="outlined"
+                  mode="contained"
                   onPress={() => addToFavorites(item)}
                   style={{ marginTop: 8 }}
                 >
