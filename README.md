@@ -18,7 +18,6 @@ Este é um app React Native usando Expo para listar episódios e personagens do 
     * ```axios```: Para requisições HTTP.
     * ```screens```: Para melhor experiência visual e navegação.
 
-
 ## ✒️ Autor
 
 * **Laércio Fernandes** - [LinkedIn](https://www.linkedin.com/in/laercio-fernandes/)
@@ -48,7 +47,6 @@ cd app-rick-and-morty
 ```
 
 #### 3. Instale o Expo CLI (caso não tenha)
-1. **Abra o arquivo ```remuneracaoMediaDocentes.ipynb``` no VS Code** <br>
 No terminal, rode:
 ```bash
 npm install -g expo-cli
