@@ -13,7 +13,8 @@ export default StyleSheet.create({
     padding: 10,
   },
   button: {
-    marginBottom: 10,
+    marginTop: 8, 
+    marginRight: 8,
   },
   card: {
     marginBottom: 10,

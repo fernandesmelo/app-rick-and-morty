@@ -75,7 +75,6 @@ const HomeScreen = ({ navigation }) => {
       >
         Buscar
       </Button>
-
       <FlatList
         data={rickandmorty}
         keyExtractor={(item) => item.id.toString()}
@@ -94,14 +93,14 @@ const HomeScreen = ({ navigation }) => {
                   onPress={() =>
                     navigation.navigate("Details", { episode: item })
                   }
-                  style={{ marginTop: 8, marginRight: 8 }}
+                  style={styles.button}
                 >
                   Ver detalhes
                 </Button>
                 <Button
                   mode="contained"
                   onPress={() => addToFavorites(item)}
-                  style={{ marginTop: 8 }}
+                  style={styles.button}
                 >
                   Adicionar aos favoritos
                 </Button>
