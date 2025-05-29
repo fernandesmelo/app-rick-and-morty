@@ -6,8 +6,11 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#fff",
   },
+  content: {
+    marginBottom: 16,
+  },
   title: {
-    marginBottom: 8,
+    marginBottom: 3,
     fontSize: 22,
   },
   subtitle: {

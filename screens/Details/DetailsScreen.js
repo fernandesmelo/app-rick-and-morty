@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { Card, Title, Paragraph, ActivityIndicator } from "react-native-paper";
+import { Card, Text, ActivityIndicator } from "react-native-paper";
 import axios from "axios";
 import styles from "./DetailsStyles";
 
@@ -31,17 +31,17 @@ const DetailsScreen = ({ route }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Title style={styles.title}>{episode.name}</Title>
-      <Paragraph style={styles.subtitle}>
-        Data de exibição: {episode.air_date}
-      </Paragraph>
-      <Paragraph style={styles.subtitle}>Episódio: {episode.episode}</Paragraph>
+      <Card.Title title={episode.name} style={styles.title} />
+      <Card.Content style={styles.content}>
+        <Text style={styles.subtitle}>Data de exibição: {episode.air_date}</Text>
+        <Text style={styles.subtitle}>Episódio: {episode.episode}</Text>
+      </Card.Content>
       {characters.map((character) => (
         <Card key={character.id} style={styles.card}>
           <Card.Cover source={{ uri: character.image }} />
+          <Card.Title title={character.name} />
           <Card.Content>
-            <Title>{character.name}</Title>
-            <Paragraph>Espécie: {character.species}</Paragraph>
+            <Text>Espécie: {character.species}</Text>
           </Card.Content>
         </Card>
       ))}
