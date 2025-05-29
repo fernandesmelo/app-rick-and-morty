@@ -12,6 +12,11 @@ Este é um app React Native usando Expo para listar episódios e personagens do 
 ## 👨🏽‍💻 Versão das Tecnologias
 * JavaScript ECMAScript 6 (ES6)
 * React Native 0.79.2
+  * Bibliotecas:
+    * ```paper```: Biblioteca de componentes visuais para React Native.
+    * ```expo```:  Plataforma para desenvolvimento React Native.
+    * ```axios```: Para requisições HTTP.
+    * ```screens```: Para melhor experiência visual e navegação.
 
 
 ## ✒️ Autor
