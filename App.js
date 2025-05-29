@@ -50,7 +50,7 @@ export default function App() {
           <Stack.Screen 
             name="Details" 
             component={DetailsScreen} 
-            options={{ title: 'Detalhes do Episódio' }} 
+            options={{ title: 'Personagens do Episódio' }} 
           />
         </Stack.Navigator>
       </NavigationContainer>
