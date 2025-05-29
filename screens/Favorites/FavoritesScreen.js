@@ -11,12 +11,10 @@ const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
       {item.characterImage && (
         <Card.Cover source={{ uri: item.characterImage }} />
       )}
-      <Card.Content>
-        <Card.Title title={item.name} />
-        <Card.Content style={styles.content}>
-          <Text>Data de exibição: {item.air_date}</Text>
-          <Text>Episódio: {item.episode}</Text>
-        </Card.Content>
+      <Card.Title title={item.name} />
+      <Card.Content style={styles.content}>
+        <Text>Data de exibição: {item.air_date}</Text>
+        <Text>Episódio: {item.episode}</Text>
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => navigateToDetails(item)}>Ver Detalhes</Button>
