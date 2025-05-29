@@ -7,14 +7,17 @@ import { useFocusEffect } from '@react-navigation/native';
 const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
   return (
     <Card style={styles.card}>
-      <Card.Cover source={{ uri: item.Poster }} />
+      {item.characterImage && (
+        <Card.Cover source={{ uri: item.characterImage }} />
+      )}
       <Card.Content>
-        <Title>{item.Title}</Title>
-        <Paragraph>{item.Year}</Paragraph>
+        <Title>{item.name}</Title>
+        <Paragraph>Data de exibição: {item.air_date}</Paragraph>
+        <Paragraph>Episódio: {item.episode}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button onPress={() => navigateToDetails(item.imdbID)}>Ver Detalhes</Button>
-        <Button onPress={() => removeFavorite(item.imdbID)}>Remover dos Favoritos</Button>
+        <Button onPress={() => navigateToDetails(item)}>Ver Detalhes</Button>
+        <Button onPress={() => removeFavorite(item.id)}>Remover dos Favoritos</Button>
       </Card.Actions>
     </Card>
   );
