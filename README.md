@@ -23,6 +23,7 @@ Este é um app React Native usando Expo para listar episódios e personagens do 
 
 * **Laércio Fernandes** - [LinkedIn](https://www.linkedin.com/in/laercio-fernandes/)
 
+## 🚀 Guia de Como Baixar e Rodar o Projeto
 ### 📦 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
