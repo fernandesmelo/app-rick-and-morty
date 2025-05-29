@@ -5,12 +5,22 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  pesquisaContainer: {
+    alignItems: "center",
+    marginBottom: 10,
+  },
   input: {
     height: 40,
+    width: "100%",
     borderColor: "gray",
     borderWidth: 1,
     marginBottom: 10,
     padding: 10,
+    borderRadius: 20,
+  },
+  buttonBuscar: {
+    width: "100%",
+    height: 40,
   },
   button: {
     marginTop: 8, 

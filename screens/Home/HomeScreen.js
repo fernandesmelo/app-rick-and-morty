@@ -62,19 +62,21 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Digite o nome de um episódio..."
-        value={query}
-        onChangeText={setQuery}
-        style={styles.input}
-      />
-      <Button
-        mode="contained"
-        onPress={searchRickAndMorty}
-        style={styles.button}
-      >
-        Buscar
-      </Button>
+      <View style={styles.pesquisaContainer}>
+        <TextInput
+          placeholder="Digite o nome de um episódio..."
+          value={query}
+          onChangeText={setQuery}
+          style={styles.input}
+        />
+        <Button
+          mode="contained"
+          onPress={searchRickAndMorty}
+          style={styles.buttonBuscar}
+        >
+          Buscar
+        </Button>
+      </View>
       <FlatList
         data={rickandmorty}
         keyExtractor={(item) => item.id.toString()}
