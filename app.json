@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-movie",
-    "slug": "app-movie",
+    "name": "app-rick-and-morty",
+    "slug": "app-rick-and-morty",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
