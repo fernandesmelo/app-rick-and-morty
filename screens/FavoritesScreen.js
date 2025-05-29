@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
-import { Card, Title, Paragraph, Button } from 'react-native-paper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect } from '@react-navigation/native';
+import React, { useState, useEffect, useCallback } from "react";
+import { View, FlatList, StyleSheet } from "react-native";
+import { Card, Title, Paragraph, Button } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
   return (
@@ -17,7 +17,9 @@ const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => navigateToDetails(item)}>Ver Detalhes</Button>
-        <Button onPress={() => removeFavorite(item.id)}>Remover dos Favoritos</Button>
+        <Button onPress={() => removeFavorite(item.id)}>
+          Remover dos Favoritos
+        </Button>
       </Card.Actions>
     </Card>
   );
@@ -30,7 +32,7 @@ const FavoritesScreen = ({ navigation }) => {
     useCallback(() => {
       const loadFavorites = async () => {
         try {
-          const storedFavorites = await AsyncStorage.getItem('favorites');
+          const storedFavorites = await AsyncStorage.getItem("favorites");
           if (storedFavorites) {
             setFavorites(JSON.parse(storedFavorites));
           }
@@ -42,26 +44,26 @@ const FavoritesScreen = ({ navigation }) => {
     }, [])
   );
 
-  const removeFavorite = async (imdbID) => {
+  const removeFavorite = async (id) => {
     try {
-      const updatedFavorites = favorites.filter((movie) => movie.imdbID !== imdbID);
+      const updatedFavorites = favorites.filter((ep) => ep.id !== id);
       setFavorites(updatedFavorites);
-      await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-      alert('Filme removido dos favoritos!');
+      await AsyncStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      alert("Episódio removido dos favoritos!");
     } catch (error) {
       console.error(error);
     }
   };
 
-  const navigateToDetails = (imdbID) => {
-    navigation.navigate('Details', { imdbID });
+  const navigateToDetails = (episode) => {
+    navigation.navigate("Details", { episode });
   };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={favorites}
-        keyExtractor={(item) => item.imdbID}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <FavoriteItem
             item={item}
@@ -70,9 +72,11 @@ const FavoritesScreen = ({ navigation }) => {
           />
         )}
         initialNumToRender={5}
-        getItemLayout={(data, index) => (
-          {length: 100, offset: 100 * index, index}
-        )}
+        getItemLayout={(data, index) => ({
+          length: 100,
+          offset: 100 * index,
+          index,
+        })}
         windowSize={10}
         maxToRenderPerBatch={5}
       />
