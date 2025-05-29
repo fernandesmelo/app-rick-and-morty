@@ -15,7 +15,6 @@ export default StyleSheet.create({
   button: {
     marginTop: 8, 
     marginRight: 8,
-    marginBottom: 8,
   },
   card: {
     marginBottom: 10,
