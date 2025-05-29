@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import { Card, Title, Paragraph, Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
+import styles from "./FavoritesStyles";
 
 const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
   return (
@@ -83,15 +84,5 @@ const FavoritesScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-  },
-  card: {
-    marginBottom: 10,
-  },
-});
 
 export default FavoritesScreen;
