@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View, FlatList } from "react-native";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
+import { Card, Text, Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import styles from "./FavoritesStyles";
@@ -12,9 +12,11 @@ const FavoriteItem = ({ item, removeFavorite, navigateToDetails }) => {
         <Card.Cover source={{ uri: item.characterImage }} />
       )}
       <Card.Content>
-        <Title>{item.name}</Title>
-        <Paragraph>Data de exibição: {item.air_date}</Paragraph>
-        <Paragraph>Episódio: {item.episode}</Paragraph>
+        <Card.Title title={item.name} />
+        <Card.Content style={styles.content}>
+          <Text>Data de exibição: {item.air_date}</Text>
+          <Text>Episódio: {item.episode}</Text>
+        </Card.Content>
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => navigateToDetails(item)}>Ver Detalhes</Button>

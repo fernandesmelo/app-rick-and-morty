@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: 10,
   },
+  content: {
+    marginBottom: 10,
+  },
 });
 
 export default styles;
