@@ -28,6 +28,7 @@ Este é um app React Native usando Expo para listar episódios e personagens do 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
 - [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/pt)
 
 Além disso, é bom ter um editor como o [VSCode](https://code.visualstudio.com/) para trabalhar com o código.
 
