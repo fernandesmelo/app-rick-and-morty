@@ -43,30 +43,30 @@ git clone https://github.com/fernandesmelo/compet-2025-formacao-4.0-fundamentos-
 ```
 #### 2. Acesse a pasta do projeto
 ```bash
-cd rick-e-morty
+cd app-rick-and-morty
 ```
 
-#### 3. Crie e ative um ambiente virtual
+#### 3. Instale o Expo CLI (caso não tenha)
 1. **Abra o arquivo ```remuneracaoMediaDocentes.ipynb``` no VS Code** <br>
-Certifique-se de que o arquivo está aberto no editor.
+No terminal, rode:
+```bash
+npm install -g expo-cli
+```
 
-2. **Clique na versão do Python no canto inferior direito** <br>
-No canto inferior direito do VS Code, você verá a versão do Python atualmente selecionada. Clique nela.
+#### 4. Instale as dependências do projeto
+Ainda na pasta do projeto, rode:
+```bash
+npm install
+```
 
-3. **Selecione a opção "Create Virtual Environment"** <br>
-Na aba de pesquisa que será exibida, procure e clique na opção "Create Virtual Environment".
-
-4. **Escolha o tipo de ambiente virtual** <br>
-Quando solicitado, clique na opção "Venv" para criar o ambiente virtual.
-
-5. **Selecione o interpretador Python** <br>
-Escolha a versão do Python instalada em sua máquina (recomenda-se Python 3.8 ou superior).
-
-6. **Associe o arquivo requirements.txt** <br>
-Após criar o ambiente virtual, o VS Code solicitará que você associe um arquivo de dependências. Selecione o arquivo requirements.txt do projeto.
-
-7. **Confirme e aguarde** <br>
-Clique em OK e aguarde enquanto o ambiente virtual é configurado e as dependências listadas no requirements.txt são instaladas automaticamente.
-
-8. **Pronto!** <br>
-Após a configuração, o ambiente virtual estará pronto para uso, e você poderá executar o notebook sem problemas.
+#### 5. Rode o projeto
+No terminal, execute:
+```bash
+npx expo start
+```
+#### 6. Execute no seu celular
+* Baixe o app Expo Go na Play Store (Android) ou App Store (iOS).
+* Abra o app Expo Go no seu celular.
+* Escaneie o QR Code que aparece no terminal ou no navegador após rodar o comando acima.
+  
+Pronto! Agora você pode testar o app Rick and Morty no seu celular.
